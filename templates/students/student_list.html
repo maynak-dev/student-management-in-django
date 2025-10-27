@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{% url 'student_create' %}" class = "btn btn-primary mb-3">Add Student</a>
+<table class = "table table-bordered">
+<thead>
+    <tr><th>ID</th><th>NAME</th><th>AGE</th><th>EMAIL</th><th>GRADE</th><th>IMAGE</th><th>ACTION</th></tr>
+</thead>
+<tbody>
+    {% for s in students %}
+    {% if s.user == user %}
+        <tr>
+            <td>{{s.id}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.age}}</td>
+            <td>{{s.email}}</td>
+            <td>{{s.grade}}</td>
+            <td>
+                {% if s.photo %}
+                    <img src="{{s.photo.url}}" width="70" height="70" style="object-fit:cover;">
+                {% else %}
+                    <p class="text-center">No Image</p>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{%url 'student_edit' s.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{%url 'student_delete' s.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endif %}
+        {% empty %}
+         <tr><td colspan="6">No students yet.</td></tr>
+        {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
