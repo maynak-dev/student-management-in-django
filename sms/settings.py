@@ -80,9 +80,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME', 'railway'),
         'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'OxNJbCmzBvaVbdcWZJMsvFyCmrxINFtn'),
-        'HOST': os.environ.get('DB_HOST', 'switchyard.proxy.rlwy.net'),
-        'PORT': os.environ.get('DB_PORT', '21528'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'OkTCUcBcdvEvVafDWAkdgUpgrViKXVbm'),
+        'HOST': os.environ.get('DB_HOST', 'maglev.proxy.rlwy.net'),
+        'PORT': os.environ.get('DB_PORT', '21133'),
     }
 }
 
@@ -133,38 +133,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Additional settings for Vercel deployment
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
 
-# Static files configuration for Vercel
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Vercel specific settings
-USE_TZ = True
-TIME_ZONE = 'UTC'
-
-# Database connection settings for serverless
-DATABASES['default']['CONN_MAX_AGE'] = 0
-DATABASES['default']['OPTIONS'] = {
-    'sslmode': 'require',
-}
-
-# Logging configuration
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'INFO',
-    },
-}
 
 LOGIN_REDIRECT_URL = '/students/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
